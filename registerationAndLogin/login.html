@@ -45,8 +45,9 @@
                     <div class="title">Log in</div>
                     <form
                       class="flip-card__form"
+                      method="POST"
                       onsubmit="return loginValidate()"
-                      action=""
+                      action="./loginVal.php"
                     >
                       <input
                         class="flip-card__input login-email"
@@ -62,7 +63,13 @@
                         type="password"
                       />
                       <span class="error-message login-pass-error"></span>
-                      <button class="flip-card__btn">Let`s go!</button>
+                      <button
+                        type="submit"
+                        class="flip-card__btn login-submit"
+                        name="loginSubmit"
+                      >
+                        Login
+                      </button>
                     </form>
                   </div>
                   <div class="flip-card__back">
@@ -75,8 +82,9 @@
                       <input
                         class="flip-card__input reg-name"
                         placeholder="Name"
-                        type="name"
+                        type="text"
                         id="name"
+                        name="name"
                       />
                       <span class="error-message name-error"></span>
                       <input
@@ -88,6 +96,7 @@
                         style="
                           -webkit-appearance: none;
                           -moz-appearance: textfield;
+                          appearance: input;
                         "
                       />
                       <span class="error-message phone-error"></span>
@@ -127,7 +136,6 @@
       </div>
     </div>
     <script src="./loginValidate.js"></script>
-
     <script src="./registerValidate.js"></script>
   </body>
 </html>

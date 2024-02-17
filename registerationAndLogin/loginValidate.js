@@ -5,7 +5,7 @@ function loginValidate() {
   const password = document.querySelector(".login-pass").value;
   const passError = document.querySelector(".login-pass-error");
 
-  const emailRegex = /^[a-zA-Z0-9-_]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+  const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
   if (!emailRegex.test(email)) {
     emailError.textContent = "*Enter correct email address";
     return false;

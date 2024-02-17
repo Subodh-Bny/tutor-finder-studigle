@@ -28,7 +28,7 @@ function validateRegister() {
     phoneError[0].textContent = "";
   }
 
-  const emailRegex = /^[a-zA-Z0-9-_]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+  const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
   if (!emailRegex.test(regEmail)) {
     emailError.textContent = "*Enter correct email address";
     return false;
