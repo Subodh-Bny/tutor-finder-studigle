@@ -1,0 +1,16 @@
+:root {
+  --font: #644bb1;
+}
+
+.main h1 {
+  color: var(--font);
+  text-align: center;
+  margin: 20px;
+}
+
+.main {
+  display: flex;
+
+  text-align: justify;
+  flex-direction: column;
+}

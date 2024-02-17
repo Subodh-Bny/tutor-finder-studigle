@@ -1,0 +1,37 @@
+.main svg {
+  height: 20px;
+}
+h1 {
+  color: #644bb1;
+}
+
+.mail,
+.phone {
+  display: flex;
+  gap: 5px;
+}
+
+.infos {
+  box-shadow: 5px 5px 5px rgba(150, 150, 150, 0.603);
+  height: 200px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.image img {
+  height: 400px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}

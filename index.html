@@ -1,88 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Studigle</title>
-    <link rel="stylesheet" href="./public/style.css">
-    <link rel="stylesheet" href="./public/login.css">
-</head>
+    <link rel="stylesheet" href="./public/style.css" />
+    <link rel="stylesheet" href="./public/login.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="nav">
-            <div class="logo">
-                <a href="#">
-                    <img src="./img/logo copy.png" alt="logo">
-                    <img class="web-name" src="./img/logo-text copy.png" alt="">
-                </a>
-            </div>
-            <div class="links">
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#About">ABOUT</a></li>
-                    <li><a href="#Contact">CONTACT</a></li>
-                </ul>
-            </div>
-            <button class="login-btn">LOGIN</button>
+      <div class="nav">
+        <div class="logo">
+          <a href="./index.html#">
+            <img src="./img/logo copy.png" alt="logo" />
+            <img class="web-name" src="./img/logo-text copy.png" alt="" />
+          </a>
         </div>
+        <div class="links">
+          <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="./public/about.html">ABOUT</a></li>
+            <li><a href="./public/contact.html">CONTACT</a></li>
+          </ul>
+        </div>
+        <a href="./registerationAndLogin/login.html">
+          <button class="login-btn">LOGIN</button></a
+        >
+      </div>
     </header>
-    <div class="main-container ">
-        <div class="main">
-            <div class="content">
-                <div class="text">
-                    <h1>
-                        <span>&quot;The Eagle Eye&quot;</span><br> To Find The best Tutor
-                    </h1>
-                </div>
-                <div class="image"><img src="./img/Creativity-pana.png" alt=""></div>
-            </div>
+    <div class="main-container">
+      <div class="main">
+        <div class="content">
+          <div class="text">
+            <h1>
+              <span>&quot;The Eagle Eye&quot;</span><br />
+              To Find The best Tutor
+            </h1>
+          </div>
+          <div class="image">
+            <img src="./img/Creativity-pana.png" alt="" />
+          </div>
         </div>
-        <div class="main hide">
-            <div class="content-2">
-                <div class="image-2"><img src="./img/Creativity-bro.png" alt=""></div>
-                <!-- Login -->
-                <div class="wrapper">
-                    <div class="card-switch">
-                        <label class="switch">
-                            <input type="checkbox" class="toggle">
-                            <span class="slider"></span>
-                            <span class="card-side"></span>
-                            <div class="flip-card__inner">
-                                <div class="flip-card__front">
-                                    <div class="title">Log in</div>
-                                    <form class="flip-card__form" action="">
-                                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                                        <input class="flip-card__input" name="password" placeholder="Password"
-                                            type="password">
-                                        <button class="flip-card__btn">Let`s go!</button>
-                                    </form>
-                                </div>
-                                <div class="flip-card__back">
-                                    <div class="title">Sign up</div>
-                                    <form class="flip-card__form" action="">
-                                        <input class="flip-card__input" placeholder="Name" type="name">
-                                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                                        <input class="flip-card__input" name="password" placeholder="Password"
-                                            type="password">
-                                        <button class="flip-card__btn">Next</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <div class="about" id="About">
-        <h1>About</h1>
-        <p></p>
-    </div>
-
     <script src="./public/index.js"></script>
-</body>
-
+  </body>
 </html>
