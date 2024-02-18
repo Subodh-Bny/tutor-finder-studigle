@@ -4,9 +4,9 @@ $user = "root";
 $pass = "";
 $dbname = "tutor_finder";
 
-$conn = mysqli_connect($serverName, $user, $pass, $dbname);
+$con = mysqli_connect($serverName, $user, $pass, $dbname);
 
-if ($conn) {
+if ($con) {
     echo "Connected";
 }
 ?>

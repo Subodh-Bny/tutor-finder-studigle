@@ -12,7 +12,9 @@ function validateRegister() {
   const confirmPass = document.querySelector("#confirm-password").value;
   const confirmPassError = document.querySelector(".confirm-error");
 
-  if (regName.indexOf(" ") <= 0) {
+  const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
+
+  if (!namePattern.test(regName)) {
     nameError.textContent = "*Enter Full Name";
     return false;
   } else {

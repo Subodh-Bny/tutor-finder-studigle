@@ -78,6 +78,7 @@
                       class="flip-card__form"
                       onsubmit="return validateRegister()"
                       action="./registeration.php"
+                      method="POST"
                     >
                       <input
                         class="flip-card__input reg-name"
@@ -125,7 +126,13 @@
                         id="confirm-password"
                       />
                       <span class="error-message confirm-error"></span>
-                      <button class="flip-card__btn" type="submit">Next</button>
+                      <button
+                        class="flip-card__btn"
+                        type="submit"
+                        name="registerSubmit"
+                      >
+                        Next
+                      </button>
                     </form>
                   </div>
                 </div>
