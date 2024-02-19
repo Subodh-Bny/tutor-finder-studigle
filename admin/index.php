@@ -54,7 +54,7 @@
               Manage Profile
 
               <br />
-              <form action="../index.html" method="post">
+              <form action="../logout/logout.php" method="post">
                 <button type="submit" class="logout-btn">Logout</button>
               </form>
             </div>

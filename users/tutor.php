@@ -24,11 +24,11 @@
 
         </ul>
       </div>
-      <a href="">
-        <form action="../logout/logout.php" method="post">
-          <button class="logout-btn" type="submit">Logout</button>
-        </form>
-      </a>
+
+      <form action="../logout/logout.php" method="post">
+        <button class="logout-btn" type="submit">Logout</button>
+      </form>
+
     </div>
   </header>
   <div class="main-container">
