@@ -11,10 +11,12 @@ if (isset($_POST['registerSubmit'])) {
 
     $res = mysqli_query($con, $sql);
     if ($res) {
-        header("Location: ../index.html");
+        header("Location: ../index.html?registered=true");
+        exit;
 
     } else {
-        echo "error";
+        header("Location: ./login.html?registered=false");
+        exit;
     }
 }
 

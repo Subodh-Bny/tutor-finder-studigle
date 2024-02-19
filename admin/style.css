@@ -1,275 +1,261 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-
-
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
-
-    --body: #392467;
-    --nav: #5D3587;
-    --button: #A367B1;
-    --main: #FFD1E3;
-
+  --body: #392467;
+  --nav: #5d3587;
+  --button: #a367b1;
+  --main: #ffd1e3;
 }
 
 body {
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .main {
-    height: 100%;
-    gap: 10px;
-    background-color: var(--body);
-    padding: 10px;
+  height: 100%;
+  gap: 10px;
+  background-color: var(--body);
+  padding: 10px;
 }
 
 .menu {
-    height: 100vh;
-    width: 20%;
-    padding: 20px;
-    gap: 5px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--nav);
-    border-radius: 10px;
-
+  height: 100vh;
+  width: 20%;
+  padding: 20px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--nav);
+  border-radius: 10px;
 }
 
 .logo {
-    height: 50px;
-    user-select: none;
+  height: 50px;
+  user-select: none;
 }
 
 .menu-cat {
-    height: 520px;
-    padding: 10px;
-    flex-direction: column;
-    justify-content: space-between;
-
+  height: 520px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .menu-cat li {
-    border-bottom: 1px solid rgb(53, 53, 53);
+  border-bottom: 1px solid rgb(53, 53, 53);
 
-    list-style: none;
-    height: 40px;
-    width: 100%;
-    display: flex;
-    padding: 0px;
-    align-items: center;
-    user-select: none;
-
+  list-style: none;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  padding: 0px;
+  align-items: center;
+  user-select: none;
 }
 
 .menu-cat li:hover {
-    cursor: pointer;
-    transform: scale(1.1);
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .menu-cat button {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--button);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--button);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
-
 .nav {
-    height: 100px;
-    background-color: var(--nav);
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 15px;
-    padding: 0 30px;
-    position: relative;
-
+  height: 100px;
+  background-color: var(--nav);
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 15px;
+  padding: 0 30px;
+  position: relative;
 }
 
 .contents-container {
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .main-contents {
-    background-color: var(--nav);
-    height: 100%;
-    width: auto;
-    border-radius: 10px;
-    padding: 30px;
-    animation: upward 0.5s ease-in;
-    background-color: var(--main);
-    color: black;
+  background-color: var(--nav);
+  height: 100%;
+  width: auto;
+  border-radius: 10px;
+  padding: 30px;
+  animation: upward 0.5s ease-in;
+  background-color: var(--main);
+  color: black;
 }
 
-
 @keyframes upward {
-    0% {
-        transform: translateY(50%);
-        opacity: 0;
-    }
-    50%{
-        opacity: 0.5;
-    }
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
 
-    100% {
-        transform: translateY(0%);
-    }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 .nav-icons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 120px;
-
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
 }
 
 .nav-icons:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .nav-icons img {
-    filter: invert();
-    height: 20px;
-
+  filter: invert();
+  height: 20px;
 }
 
 .nav-icons span {
-    background-color: red;
-    width: 17px;
-    height: 17px;
-    font-size: 12px;
-    display: inline-flex;
-    justify-content: center;
-    border-radius: 50%;
-    transform: translate(-20%, -50%);
-    font-weight: bolder;
+  background-color: red;
+  width: 17px;
+  height: 17px;
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 50%;
+  transform: translate(-20%, -50%);
+  font-weight: bolder;
 }
 
 .icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile {
-    border: 1px solid;
-    border-radius: 50%;
-    overflow: hidden;
-    padding: 1px;
-
+  border: 1px solid;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 1px;
 }
 
 .profile-container {
-    transform: translate(-25%, 60%);
-    position: absolute;
-    background-color: var(--body);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    top: 0;
-    right: 0;
-    height: 100px;
+  transform: translate(-25%, 60%);
+  position: absolute;
+  background-color: var(--body);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  height: 100px;
 }
 
-
 .dash-container {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 .dash-content {
-    background-color: var(--button);
-    height: 200px;
-    width: 195px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-align: center;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-
+  background-color: var(--button);
+  height: 200px;
+  width: 195px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
 }
 
 .dash-content img {
-    filter: invert();
-    height: 100px;
+  filter: invert();
+  height: 100px;
 }
-
 
 .chart-container {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-
 
 .chart-container .pie-chart {
-    width: 500px;
+  width: 500px;
 }
 
-
 .chart-container img {
-    border-radius: 10px;
-    width: 400px;
-    height: 300px;
+  border-radius: 10px;
+  width: 400px;
+  height: 300px;
 }
 
 .manage-container {
-    margin-top: 10px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    color: white;
-    justify-content: space-around;
-    align-items: start;
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: white;
+  justify-content: space-around;
+  align-items: start;
 }
 
 .manage-container img {
-    height: 100px;
-    filter: invert();
+  height: 100px;
+  filter: invert();
 }
 
 .manage-container button {
-    padding: 5px 20px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bolder;
-    background-color: var(--nav);
-    color: white;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bolder;
+  background-color: var(--nav);
+  color: white;
 }
 
-
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .manage-container .users {
-    background-color: var(--button);
-    border-radius: 10px;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
+  background-color: var(--button);
+  border-radius: 10px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: large;
 }

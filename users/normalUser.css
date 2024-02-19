@@ -68,7 +68,7 @@ header {
   color: #644bb1;
 }
 
-.nav .login-btn {
+.nav .logout-btn {
   background: none;
   color: var(--font);
   font-weight: 500;
@@ -78,7 +78,7 @@ header {
   font-size: large;
 }
 
-.nav .login-btn:hover {
+.nav .logout-btn:hover {
   color: white;
   cursor: pointer;
   background-color: var(--font);
@@ -158,4 +158,21 @@ header {
   width: 100%;
 
   grid-template-columns: repeat(2, 1fr);
+}
+
+.about {
+  margin: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 110%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about h1 {
+  color: #644bb1;
+  text-decoration: underline;
 }
