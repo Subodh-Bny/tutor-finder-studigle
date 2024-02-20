@@ -66,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studigle</title>
-  <link rel="stylesheet" href="../public/style.css" />
+  <link rel="stylesheet" href="../public/loginstyle.css" />
   <link rel="stylesheet" href="../public/login.css" />
+  <link rel="stylesheet" href="../public/responsive.css" />
 </head>
 
 <body>
@@ -81,12 +82,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <div class="links">
         <ul>
-          <li><a href="../index.html">HOME</a></li>
-          <li><a href="../public/about.html">ABOUT</a></li>
-          <li><a href="../public/contact.html">CONTACT</a></li>
+          <li class="nav-link"><a href="../index.html">HOME</a></li>
+          <li class="nav-link"><a href="../public/about.html">ABOUT</a></li>
+          <li class="nav-link">
+            <a href="../public/contact.html">CONTACT</a>
+          </li>
         </ul>
+        <a href="#" class="login-href nav-link">
+          <button class="login-btn">LOGIN</button></a>
       </div>
-      <button class="login-btn">LOGIN</button>
+    </div>
+
+    <div class="hamburger">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="hamburger-svg">
+        <path fill="#644bb1"
+          d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+      </svg>
     </div>
   </header>
   <div class="main-container">
@@ -156,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
   <script src="./loginValidate.js"></script>
   <script src="./registerValidate.js"></script>
+  <script src="../public/responsiveness.js"></script>
 
 </body>
 

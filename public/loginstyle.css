@@ -124,35 +124,6 @@ header {
   z-index: 99;
 }
 
-.contact-main {
-  padding: 10px 90px;
-  position: absolute;
-  top: 10%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  overflow: hidden;
-  z-index: 99;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.contact-main .image img {
-  height: 400px;
-}
-
-.text h1 {
-  font-size: 50px;
-}
-.content {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  place-items: center;
-  animation-name: moveup;
-  overflow: hidden;
-}
 @keyframes moveup {
   from {
     transform: translate(0%, 100%);
@@ -170,23 +141,6 @@ header {
   to {
     transform: translate(0%, 0%);
   }
-}
-.content .image {
-  overflow: hidden;
-  animation: moveup 0.5s linear;
-}
-
-.content .text {
-  display: flex;
-  align-items: center;
-  animation: fromleft 1s linear;
-}
-.content .text span {
-  color: var(--font);
-}
-
-.content .image img {
-  height: 500px;
 }
 
 .content-2 .image-2 img {

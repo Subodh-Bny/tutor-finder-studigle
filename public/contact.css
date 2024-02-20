@@ -1,4 +1,4 @@
-.main svg {
+.contact-main svg {
   height: 20px;
 }
 h1 {
@@ -24,14 +24,12 @@ h1 {
 }
 
 .image img {
-  height: 400px;
+  height: auto;
+  width: 100%;
 }
 
-.main {
+.image {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  right: 0;
+  flex-direction: column;
+  width: auto;
 }

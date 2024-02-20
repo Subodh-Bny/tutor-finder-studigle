@@ -1,0 +1,137 @@
+@media screen and (max-width: 1120px) {
+  .content-2 {
+    display: flex;
+    width: fit-content;
+  }
+  .content-2 .image-2 img {
+    display: none;
+  }
+
+  .card-switch {
+    position: relative;
+  }
+  .switch {
+    transform: translate(918%, 100%);
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .switch {
+    transform: translate(863%, 100%);
+  }
+}
+
+@media screen and (max-width: 976px) {
+  .switch {
+    transform: translate(813%, 100%);
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .switch {
+    transform: translate(765%, 100%);
+  }
+}
+@media screen and (max-width: 900px) {
+  .nav .links {
+    position: fixed;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    top: 13%;
+    left: -100%;
+    width: 100%;
+
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.308);
+  }
+  .links .login-href {
+    align-self: center;
+    margin: 20px 0;
+  }
+  .links ul {
+    margin: 5px 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .active {
+    left: 0% !important;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    animation-name: moveup;
+    overflow: hidden;
+  }
+
+  .contact-main {
+    flex-direction: column !important;
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .switch {
+    transform: translate(780%, 100%);
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .switch {
+    transform: translate(685%, 100%);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .switch {
+    transform: translate(590%, 100%);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .switch {
+    transform: translate(500%, 100%);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .switch {
+    transform: translate(400%, 100%);
+  }
+}
+
+@media screen and (max-width: 558px) {
+  .switch {
+    transform: translate(370%, 100%);
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .switch {
+    transform: translate(300%, 100%);
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .switch {
+    transform: translate(200%, 100%);
+  }
+}
+@media screen and (max-width: 420px) {
+  header,
+  .main {
+    padding: 10px 10px;
+  }
+  .switch {
+    transform: translate(305%, 100%);
+  }
+}
