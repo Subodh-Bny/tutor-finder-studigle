@@ -6,8 +6,9 @@ if (isset($_POST['registerSubmit'])) {
     $userPhone = $_POST['phone'];
     $userEmail = $_POST['reg-email'];
     $userPassHashed = md5($_POST['reg-password']);
+    $userRole = $_POST['role'];
 
-    $sql = "insert into users(name, phone, email, password) values ('$userName', $userPhone, '$userEmail', '$userPassHashed')";
+    $sql = "INSERT into users(name, phone, email, password, role) values ('$userName', $userPhone, '$userEmail', '$userPassHashed', '$userRole')";
 
     $res = mysqli_query($con, $sql);
     if ($res) {
@@ -19,7 +20,4 @@ if (isset($_POST['registerSubmit'])) {
         exit;
     }
 }
-
-
-
 ?>

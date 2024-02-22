@@ -12,6 +12,9 @@ function validateRegister() {
   const confirmPass = document.querySelector("#confirm-password").value;
   const confirmPassError = document.querySelector(".confirm-error");
 
+  const role = document.querySelector("#role").value;
+  const roleError = document.querySelector(".role-error");
+
   const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
 
   if (!namePattern.test(regName)) {
@@ -70,5 +73,12 @@ function validateRegister() {
     return false;
   } else {
     confirmPassError.textContent = "";
+  }
+
+  if (role == -1) {
+    roleError.textContent = "*Please Select role";
+    return false;
+  } else {
+    roleError = "";
   }
 }

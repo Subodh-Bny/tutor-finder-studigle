@@ -144,6 +144,7 @@ header {
 
 .text h1 {
   font-size: 50px;
+  text-align: justify;
 }
 .content {
   display: grid;
@@ -178,8 +179,37 @@ header {
 
 .content .text {
   display: flex;
-  align-items: center;
+  align-items: start;
+
   animation: fromleft 1s linear;
+  flex-direction: column;
+}
+
+.text p {
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-align: justify;
+  font-weight: 100;
+  margin-top: 20px;
+}
+
+.text button {
+  background-color: #644bb1;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+.text button:hover {
+  cursor: pointer;
+  background-color: #5e499e;
+}
+
+.text button:active {
+  background-color: #564785;
 }
 .content .text span {
   color: var(--font);

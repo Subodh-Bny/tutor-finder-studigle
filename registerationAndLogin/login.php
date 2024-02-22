@@ -1,6 +1,6 @@
 <?php
 session_start();
-$errorMessage = "";
+$_SESSION['error_message'] = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $loginEmail = $_POST['email'];
@@ -25,11 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($hashedLoginPassword == $hashedPassword) {
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['user_name'] = $row['name'];
+      $_SESSION['user_role'] = $row['role'];
 
-      if ($row['role'] == "admin") {
+      if ($_SESSION['user_role'] == "admin") {
         header("Location: ../admin/index.php");
         exit;
-      } else if ($row['role'] == "user") {
+      } else if ($row['role'] == "student") {
         header("Location: ../users/normalUser.php");
         exit;
 
@@ -43,12 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } else {
 
-      $errorMessage = "Invalid email or password";
+      $_SESSION['error_message'] = "Invalid email or password";
     }
   } else {
     // No user with the entered email found
 
-    $errorMessage = "Invalid email or password";
+    $_SESSION['error_message'] = "Invalid email or password";
 
   }
 
@@ -123,7 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="flip-card__input login-pass" name="password" placeholder="Password" type="password" />
                     <span class="error-message login-pass-error">
                       <?php
-                      echo $errorMessage;
+                      echo $_SESSION['error_message'];
+                      unset($_SESSION['error_message']);
                       ?>
                     </span>
                     <button type="submit" class="flip-card__btn login-submit" name="loginSubmit">
@@ -153,6 +155,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="flip-card__input" name="confirm-password" placeholder="Confirm Password"
                       type="password" id="confirm-password" />
                     <span class="error-message confirm-error"></span>
+                    <select name="role" id="role">
+                      <option value="-1">Register as..</option>
+                      <option value="student">Student</option>
+                      <option value="tutor">Tutor</option>
+                    </select>
+                    <span class="error-message role-error"></span>
                     <button class="flip-card__btn" type="submit" name="registerSubmit">
                       Next
                     </button>

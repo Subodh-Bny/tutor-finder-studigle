@@ -110,7 +110,7 @@ header {
 }
 .main-container {
   position: relative;
-  height: 110vh;
+  height: 120vh;
 }
 .main {
   padding: 10px 90px;
@@ -152,4 +152,13 @@ header {
   width: 100%;
 
   grid-template-columns: repeat(2, 1fr);
+}
+
+select {
+  padding: 5px 80px;
+  background: white;
+  border: none;
+  border-radius: 5px;
+  color: var(--font-color-sub);
+  font-weight: bold;
 }

@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
+  header("Location: ../registerationAndLogin/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

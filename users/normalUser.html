@@ -1,18 +1,21 @@
-<?php session_start(); ?>
+<!-- <?php session_start();
+if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
+  header("Location: ../registerationAndLogin/login.php");
+}
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studigle</title>
+    <link rel="stylesheet" href="./normalUser.css" />
+    <link rel="stylesheet" href="./public/login.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studigle</title>
-  <link rel="stylesheet" href="./normalUser.css" />
-  <link rel="stylesheet" href="./public/login.css" />
-</head>
-
-<body>
-  <header>
+  <body>
+    <!-- <header>
     <div class="nav">
       <div class="logo">
         <a href="#">
@@ -46,7 +49,19 @@
         </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </div> -->
+    <main>
+      <nav>
+        <a href="#" class="logo">
+          <img src="../img/logo copy.png" alt="logo" />
+          <img class="web-name" src="../img/logo-text copy.png" alt="" />
+        </a>
+      </nav>
+      <section class="container">
+        <div class="user-nav">
+          <h1>Welcome</h1>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
