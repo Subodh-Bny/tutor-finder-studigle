@@ -5,19 +5,66 @@ if (isset($_POST['registerSubmit'])) {
     $userName = $_POST['name'];
     $userPhone = $_POST['phone'];
     $userEmail = $_POST['reg-email'];
-    $userPassHashed = md5($_POST['reg-password']);
+    $userPassword = $_POST['reg-password'];
     $userRole = $_POST['role'];
 
-    $sql = "INSERT into users(name, phone, email, password, role) values ('$userName', $userPhone, '$userEmail', '$userPassHashed', '$userRole')";
+    // Hash password securely
+    $hashedPassword = md5($userPassword);
 
-    $res = mysqli_query($con, $sql);
-    if ($res) {
-        header("Location: ../index.html?registered=true");
-        exit;
+    // Insert user data into the users table using prepared statement
+    $insertUserSql = "INSERT INTO users (name, phone, email, password, role) VALUES (?, ?, ?, ?, ?)";
+    $stmtInsertUser = mysqli_stmt_init($con);
 
-    } else {
-        header("Location: ./login.html?registered=false");
-        exit;
+
+
+    if (!mysqli_stmt_prepare($stmtInsertUser, $insertUserSql)) {
+        // Handle SQL statement preparation error
+        exit("SQL statement preparation error");
     }
+
+    mysqli_stmt_bind_param($stmtInsertUser, "sssss", $userName, $userPhone, $userEmail, $hashedPassword, $userRole);
+    mysqli_stmt_execute($stmtInsertUser);
+
+
+    $insertedUserId = mysqli_insert_id($con);
+
+    if ($userRole == 'student') {
+        $insertToRoleSql = "INSERT into students (user_id) values (?)";
+        $stmtInsertUser = mysqli_stmt_init($con);
+
+        if (!mysqli_stmt_prepare($stmtInsertUser, $insertToRoleSql)) {
+            // Handle SQL statement preparation error
+            exit("SQL statement preparation error");
+        }
+        mysqli_stmt_bind_param($stmtInsertUser, "s", $insertedUserId);
+        mysqli_stmt_execute($stmtInsertUser);
+
+    } else if ($userRole == 'tutor') {
+        $insertToRoleSql = "INSERT into tutor (user_id) values (?)";
+        $stmtInsertUser = mysqli_stmt_init($con);
+
+        if (!mysqli_stmt_prepare($stmtInsertUser, $insertToRoleSql)) {
+            // Handle SQL statement preparation error
+            exit("SQL statement preparation error");
+        }
+        mysqli_stmt_bind_param($stmtInsertUser, "s", $insertedUserId);
+        mysqli_stmt_execute($stmtInsertUser);
+    }
+
+    // Insert user activity data into the useractivity table using prepared statement
+    $insertActivitySql = "INSERT INTO useractivity (user_id, activity_type, activity_details) VALUES (?, ?, ?)";
+    $stmtInsertActivity = mysqli_stmt_init($con);
+    if (!mysqli_stmt_prepare($stmtInsertActivity, $insertActivitySql)) {
+        // Handle SQL statement preparation error
+        exit("SQL statement preparation error");
+    }
+    $activityType = "Registration";
+    $activityDetails = "$userName registered to the system as a $userRole";
+    mysqli_stmt_bind_param($stmtInsertActivity, "iss", $insertedUserId, $activityType, $activityDetails);
+    mysqli_stmt_execute($stmtInsertActivity);
+
+    // Redirect to appropriate page after successful registration
+    header("Location: ../index.html?registered=true");
+    exit;
 }
 ?>

@@ -12,9 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $sql = "SELECT * FROM users WHERE email = ?";
   $stmt = $con->prepare($sql);
+  if (!$stmt) {
+    die("Prepare failed: " . $con->error);
+  }
   $stmt->bind_param("s", $loginEmail);
   $stmt->execute();
   $result = $stmt->get_result();
+
+  $admin_sql = "SELECT * FROM admins WHERE admin_email = ?";
+  $admin_stmt = $con->prepare($admin_sql);
+  if (!$admin_stmt) {
+    die("Prepare failed: " . $con->error);
+  }
+  $admin_stmt->bind_param("s", $loginEmail);
+  $admin_stmt->execute();
+  $admin_result = $admin_stmt->get_result();
 
 
   if ($result->num_rows == 1) {
@@ -27,19 +39,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['user_name'] = $row['name'];
       $_SESSION['user_role'] = $row['role'];
 
-      if ($_SESSION['user_role'] == "admin") {
-        header("Location: ../admin/index.php");
-        exit;
-      } else if ($row['role'] == "student") {
+      if ($row['role'] == "student") {
         header("Location: ../users/normalUser.php");
         exit;
 
       } else if ($row['role'] == "tutor") {
         header("Location: ../users/tutor.php");
         exit;
-
-
       }
+    } else {
+      $_SESSION['error_message'] = "Invalid email or password";
+    }
+  } else if ($admin_result->num_rows == 1) {
+    $row = $admin_result->fetch_assoc();
+    $hashedPassword = $row['admin_password'];
+    $hashedLoginPassword = md5($loginPassword);
+
+    if ($hashedLoginPassword == $hashedPassword) {
+      $_SESSION['user_id'] = $row['admin_id'];
+      $_SESSION['user_name'] = $row['admin_name'];
+      $_SESSION['user_role'] = "admin";
+
+      header("Location: ../admin/index.php");
+      exit;
 
 
     } else {
@@ -47,10 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['error_message'] = "Invalid email or password";
     }
   } else {
-    // No user with the entered email found
 
     $_SESSION['error_message'] = "Invalid email or password";
-
   }
 
   // Close the prepared statement and database connection

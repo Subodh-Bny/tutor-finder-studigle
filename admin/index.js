@@ -7,7 +7,6 @@ let chat = document.querySelector(".chat");
 let dashboardLink = document.querySelector("#dashboard");
 let chartsLink = document.querySelector("#charts");
 let manageUsersLink = document.querySelector("#manage-users");
-let chatLink = document.querySelector("#chat");
 
 let active = dashboard;
 function openPage(link, content) {
@@ -20,7 +19,6 @@ function openPage(link, content) {
 openPage(dashboardLink, dashboard);
 openPage(chartsLink, charts);
 openPage(manageUsersLink, manageUsers);
-openPage(chatLink, chat);
 
 //click profile icon
 let profileIcon = document.querySelector(".profile");

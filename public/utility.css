@@ -1,0 +1,23 @@
+.border {
+  border: 2px solid red;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.background {
+  background-color: blue;
+}
+
+.hide {
+  display: none;
+}
