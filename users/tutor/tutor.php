@@ -1,6 +1,6 @@
 <!-- <?php session_start();
 if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
-  header("Location: ../registerationAndLogin/login.php");
+  header("Location: ../../registerationAndLogin/login.php");
 }
 ?> -->
 
@@ -12,7 +12,7 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studigle</title>
   <link rel="stylesheet" href="./tutor.css" />
-  <link rel="stylesheet" href="../public/utility.css">
+  <link rel="stylesheet" href="../../public/utility.css">
 </head>
 
 <body>
@@ -39,7 +39,7 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
         </li>
       </ul>
 
-      <form action="../logout/logout.php" method="post" id="logout-form">
+      <form action="../../logout/logout.php" method="post" id="logout-form">
         <button name="logout"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
             <path
@@ -66,6 +66,9 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
             <h3 class="user-name">
               <?php echo $_SESSION['user_name'] ?>
             </h3>
+            <ul class="controls">
+              <li><a href="">Update Profile</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -75,7 +78,7 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
     </section>
   </main>
 
-  <script src="./profileBtn.js"></script>
+  <script src="../student/profileBtn.js"></script>
 </body>
 
 </html>

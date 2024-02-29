@@ -1,0 +1,43 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.find-container {
+  display: grid !important;
+  grid-template-columns: repeat(4, auto);
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.tutor {
+  background-color: #644bb1;
+  height: 200px;
+  color: white;
+  width: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.tutor img {
+  height: 80px;
+  filter: invert();
+}
+.tutor form {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.tutor form button {
+  padding: 5px 10px;
+}

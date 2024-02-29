@@ -11,6 +11,7 @@ if ($result) {
     echo "Couldnot fetch  data";
 }
 
+
 ?>
 
 
@@ -77,7 +78,7 @@ if ($result) {
             <div class="main-contents">
                 <h2>Update</h2>
                 <hr />
-                <form action="" method="POST">
+                <form action="./updatedata.php" method="POST">
                     <label for="name">Name</label><br>
                     <input id="name" name="name" type="text" value="<?php echo $row['name']; ?>">
                     <br>
@@ -87,6 +88,7 @@ if ($result) {
                     <input id="email" type="text" name="email" value="<?php echo $row['email']; ?>"><br>
 
                     <?php if ($row['role'] == "student") {
+
                         $get_student_sql = "SELECT grade_level, subjects_needed from students where user_id = " . $row['id'];
                         $student_result = mysqli_query($con, $get_student_sql);
                         if ($student_result) {
@@ -122,10 +124,31 @@ if ($result) {
                             <?php
                         }
                     }
-
+                    $_SESSION['update_user_role'] = $row['role'];
                     ?>
                     <br>
                     <button type="submit" name="update">Update</button>
+                    <br>
+
+                    <?php
+                    if (isset($_SESSION['update_msg'])) {
+                        ?>
+                        <span class="update_message" style="color:green;">
+                            <?php
+                            echo $_SESSION['update_msg'];
+                            unset($_SESSION['update_msg']);
+                    } else if (isset($_SESSION['error_update_msg'])) {
+                        ?>
+                                <span class="update_message" style="color:green;">
+                                    ?>
+                                    <?php
+                                    echo $_SESSION['error_update_msg'];
+                                    unset($_SESSION['error_update_msg']);
+
+                    }
+                    ?>
+                        </span>
+
                 </form>
             </div>
         </div>

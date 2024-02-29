@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
             <div class="menu-cat flex">
                 <ul>
-                    <a href="../users/normalUser.php">
+                    <a href="../users/student/normalUser.php">
                         <li id="dashboard">Home</li>
                     </a>
                 </ul>
@@ -117,7 +117,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </div>
     </div>
-    <script src="../users/student.js"></script>
+    <script src="../users/student/student.js"></script>
 </body>
 
 </html>

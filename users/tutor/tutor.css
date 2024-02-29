@@ -191,3 +191,8 @@ article {
 #logout-form button:hover {
   cursor: pointer;
 }
+
+.controls {
+  list-style: none;
+  padding: 10px 0px;
+}

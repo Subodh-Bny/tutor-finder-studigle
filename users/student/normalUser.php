@@ -3,7 +3,7 @@ session_start();
 
 // Redirect if user role is not 'student' or if user ID is not set
 if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
-  header("Location: ../registerationAndLogin/login.php");
+  header("Location: ../../registerationAndLogin/login.php");
 }
 ?>
 
@@ -13,11 +13,11 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Student</title>
 
   <!-- External CSS files -->
   <link rel="stylesheet" href="./normalUser.css" />
-  <link rel="stylesheet" href="../public/utility.css" />
+  <link rel="stylesheet" href="../../public/utility.css" />
 </head>
 
 <body>
@@ -26,16 +26,18 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
     <div class="menu">
       <div class="logo flex align-center justify-center">
         <a href="#" class="logo">
-          <img class="web-name" src="../img/logo-text copy.png" alt="" />
+          <img class="web-name" src="../../img/logo-text copy.png" alt="" />
         </a>
       </div>
       <div class="menu-cat flex">
         <ul>
           <li id="dashboard">Home</li>
-          <li id="find-tutor">Find Tutor</li>
+          <a href="./findTutor.php">
+            <li id="find-tutor">Find Tutor</li>
+          </a>
         </ul>
         <!-- Logout Form -->
-        <form action="../logout/logout.php" method="post" id="logout-form">
+        <form action="../../logout/logout.php" method="post" id="logout-form">
           <button name="logout">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
@@ -55,14 +57,14 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
         <div class="nav-icons">
           <!-- Profile Icon -->
           <div class="profile icons">
-            <img src="../admin/images/profile.svg" />
+            <img src="../../admin/images/profile.svg" />
           </div>
           <!-- Profile Container -->
           <div class="profile-container">
             <div class="profile-contents">
               <h4>Settings</h4>
               <ul class="setting-list">
-                <li><a href="../update/updateprofile.php">Update Profile</a></li>
+                <li><a href="../../update/updateprofile.php">Update Profile</a></li>
               </ul>
             </div>
           </div>
@@ -76,13 +78,6 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
         <div class="dash-container">
           <!-- Dashboard content will go here -->
         </div>
-      </div>
-
-      <!-- Update Profile Content -->
-      <div class="main-contents find-tutor hide">
-        <h1>Find Tutor</h1>
-
-
       </div>
     </div>
   </div>

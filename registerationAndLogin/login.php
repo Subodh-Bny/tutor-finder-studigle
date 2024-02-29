@@ -40,11 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['user_role'] = $row['role'];
 
       if ($row['role'] == "student") {
-        header("Location: ../users/normalUser.php");
+        header("Location: ../users/student/normalUser.php");
         exit;
 
       } else if ($row['role'] == "tutor") {
-        header("Location: ../users/tutor.php");
+        header("Location: ../users/tutor/tutor.php");
         exit;
       }
     } else {
