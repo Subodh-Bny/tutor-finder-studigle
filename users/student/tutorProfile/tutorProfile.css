@@ -1,0 +1,157 @@
+.hide {
+  display: none !important;
+}
+.tutor-profile-container {
+  padding: 10px;
+}
+
+.main-contents h1 {
+  color: #644bb1;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0.5px solid #644bb1;
+}
+
+.action-btn button {
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  background-color: #644bb1;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.action-btn button:hover {
+  transform: scale(1.05);
+}
+
+.action-btn button:active {
+  transform: scale(1.02);
+}
+
+.tutor-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.main-contents {
+  position: relative;
+}
+
+.review-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(102, 102, 102, 0.344);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.reviews-container {
+  background-color: white;
+  height: 300px;
+  width: 400px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transform: translate(0%, -20%);
+}
+.reviews-container h2 {
+  color: #644bb1;
+}
+
+.reviews-container img {
+  height: 30px;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  z-index: 9;
+}
+
+.reviews-container form {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 10px 0;
+  background-color: rgb(233, 233, 233);
+}
+
+.reviews-container form .review-post input {
+  width: 80%;
+  padding: 2px 5px;
+}
+
+.reviews-container form button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #644bb1;
+  color: white;
+  border: none;
+  font-weight: bolder;
+}
+
+.review-post {
+  display: flex;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.hide-container {
+  cursor: pointer;
+}
+
+.rating {
+  padding: 10px;
+}
+
+.rating i {
+  color: rgb(96, 96, 96);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.active {
+  color: orange !important;
+}
+
+.reviews {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(199, 199, 199);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.review {
+  /*   height: 100px; */
+  width: 95%;
+  background-color: #d7d7d7;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.user-star {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+.posted-review {
+  font-size: 15px;
+}
+
+.rating-got {
+  display: inline-block;
+  font-size: 15px;
+  margin: 0 3px;
+}

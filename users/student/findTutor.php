@@ -5,6 +5,13 @@ session_start();
 if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
     header("Location: ../../registerationAndLogin/login.php");
 }
+
+if (isset($_POST['see-more'])) {
+    $tutorid = $_POST['tutor_id'];
+    $_SESSION['profile_tutor'] = $tutorid;
+
+    header("Location: ./tutorProfile/tutorProfile.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +34,7 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
         <div class="menu">
             <div class="logo flex align-center justify-center">
                 <a href="#" class="logo">
-                    <img class="web-name" src="../img/logo-text copy.png" alt="" />
+                    <img class="web-name" src="../../img/logo-text copy.png" alt="" />
                 </a>
             </div>
             <div class="menu-cat flex">
@@ -89,13 +96,12 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
                             ?>
                             <div class="tutor">
                                 <img src="../../img/user.svg" alt="profile">
-                                <form action="" method="POST">
-                                    <input type="hidden" value="<?php echo $row['id']; ?>">
+                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                                    <input type="hidden" name="tutor_id" value="<?php echo $row['id']; ?>">
                                     <span class="name">
                                         <?php echo $row['name'] ?>
                                     </span>
-                                    <button>See More</button>
-
+                                    <button type="submit" name="see-more">See More</button>
                                 </form>
                             </div>
 

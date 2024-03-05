@@ -115,6 +115,7 @@ header {
 .main {
   padding: 10px 90px;
   position: absolute;
+  font-size: larger;
   top: 10%;
   bottom: 0;
   left: 0;

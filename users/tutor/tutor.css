@@ -173,6 +173,7 @@ article {
   width: 100%;
   border-radius: 10px;
   padding: 20px;
+  color: #644bb1;
 }
 
 #logout-form {
@@ -195,4 +196,8 @@ article {
 .controls {
   list-style: none;
   padding: 10px 0px;
+}
+
+hr {
+  border: 1px solid var(--dark);
 }

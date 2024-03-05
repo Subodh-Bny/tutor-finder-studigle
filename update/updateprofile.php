@@ -2,6 +2,13 @@
 session_start();
 $_SESSION['update_msg'] = "";
 if (isset($_SESSION['user_id'])) {
+
+
+    // Redirect if user role is not 'student' or if user ID is not set
+    if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
+        header("Location: ../../registerationAndLogin/login.php");
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == "POST" || isset($_POST['update-btn'])) {
         $grade = $_POST['grade'];
         $user_id = $_SESSION['user_id'];
@@ -26,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
                 exit("SQL statement preparation error");
             }
             $activityType = "Profile Update";
-            $activityDetails = "$userName with updated his profile";
+            $activityDetails = "$userName updated his profile";
             mysqli_stmt_bind_param($stmtInsertActivity, "iss", $user_id, $activityType, $activityDetails);
             mysqli_stmt_execute($stmtInsertActivity);
 
@@ -48,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../users/normalUser.css" />
+    <link rel="stylesheet" href="../users/student/normalUser.css" />
     <link rel="stylesheet" href="../public/utility.css" />
 </head>
 
