@@ -8,6 +8,14 @@ if (isset($_POST['registerSubmit'])) {
     $userPassword = $_POST['reg-password'];
     $userRole = $_POST['role'];
 
+    $check_email_exist_sql = "SELECT email FROM users WHERE email = '$userEmail'";
+    $check_email_exist_res = mysqli_query($con, $check_email_exist_sql);
+
+    if (mysqli_num_rows($check_email_exist_res) > 0) {
+        header("Location: ./login.php?registered=false");
+        exit;
+    }
+
     // Hash password securely
     $hashedPassword = md5($userPassword);
 
@@ -64,7 +72,7 @@ if (isset($_POST['registerSubmit'])) {
     mysqli_stmt_execute($stmtInsertActivity);
 
     // Redirect to appropriate page after successful registration
-    header("Location: ../index.html?registered=true");
+    header("Location: ./login.php?registered=true");
     exit;
 }
 ?>

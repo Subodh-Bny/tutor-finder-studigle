@@ -1,0 +1,15 @@
+.student {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px 5px 10px;
+  border-bottom: 1px solid #644bb1;
+}
+
+.buttons button {
+  background-color: #644bb1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

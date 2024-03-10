@@ -1,0 +1,52 @@
+.dash-container {
+  margin: 0 !important;
+}
+.dash-container ul {
+  list-style: none;
+  width: 100%;
+}
+
+.dash-container ul li {
+  border-bottom: 1px solid #644bb1;
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-btns button {
+  padding: 5px 20px;
+  font-weight: 500;
+  margin: 0 2px;
+}
+
+.action-btns {
+  height: min-content;
+}
+
+.accept-btn {
+  background-color: #644bb1;
+  color: white;
+  border: 1px solid #644bb1;
+  border-radius: 5px;
+}
+
+.accept-btn:hover {
+  transform: scale(1.1);
+}
+.accept-btn {
+}
+
+.reject-btn {
+  background-color: rgba(255, 255, 255, 0);
+  color: #644bb1;
+  border: 1px solid #644bb1;
+  border-radius: 5px;
+}
+
+.reject-btn:hover {
+  transform: scale(1.1);
+}
+.reject-btn {
+}

@@ -8,16 +8,11 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
 }
 
 
-
-
-
-
-
 include "../../../connection/connection.php";
 
 $tutorid = $_SESSION['profile_tutor'];
 
-$tutorSql = "SELECT users.phone, users.email, users.name, tutor.bio, tutor.subjects_taught, tutor.availability, tutor.hourly_rate
+$tutorSql = "SELECT users.phone, users.email, users.name, tutor.bio, tutor.subjects_taught, tutor.availability, tutor.hourly_rate, tutor.tutor_id
      from users join tutor
      on users.id = tutor.user_id
      where users.id = $tutorid and tutor.user_id = $tutorid";
@@ -28,6 +23,14 @@ if ($tutor_result) {
 } else {
     echo mysqli_error($con);
 }
+
+
+// sql for request button to check if request was previously sent
+$student_req_id = $_SESSION['user_id'];
+$tutor_req_id = $_SESSION['profile_tutor'];
+$request_sql = "SELECT * from request where student_id = $student_req_id and tutor_id = $tutor_req_id";
+$request_exec_res = mysqli_query($con, $request_sql);
+
 
 ?>
 
@@ -106,10 +109,32 @@ if ($tutor_result) {
                     <h1>
                         <?php echo $tutor_row['name']; ?>
                     </h1>
+                    <span class="average-rating">&lpar; Overall
+                        <?php
+                        $tutor_id_for_rating = $tutor_row['tutor_id'];
+                        $_SESSION['tutor_id'] = $tutor_id_for_rating;
+                        $get_average_rating_sql = "SELECT round(avg(rating),2) as average from ratings where tutor_id = '$tutor_id_for_rating'";
+                        $rating_res = mysqli_query($con, $get_average_rating_sql);
+                        if ($rating_res) {
+                            $got_rating = mysqli_fetch_array($rating_res);
+                            echo $got_rating['average'];
+                        }
+                        ?> &#9733; &rpar;
+                    </span>
                     <div class="action-btn">
-                        <button class="rating-btn">Rating And Review</button>
-                        <button class="request">Request</button>
-
+                        <button class="rating-btn" name="rating_btn">Rating And Review</button>
+                        <?php
+                        if (mysqli_num_rows($request_exec_res) > 0) {
+                            $request_row = mysqli_fetch_array($request_exec_res);
+                            if ($request_row['status'] == 'sent') {
+                                echo "<button class='request-check request-sent'>Request Sent</button>";
+                            } else if ($request_row['status'] == 'accepted') {
+                                echo "<button class='request-check accepted'>Un-Tutorize</button>";
+                            }
+                        } else {
+                            echo "<button class='request-check request'>Request</button>";
+                        }
+                        ?>
                     </div>
                 </div>
                 <hr />
@@ -155,51 +180,9 @@ if ($tutor_result) {
                         <hr>
                         <img src="../../../img/x.svg" alt="cross" class="hide-container">
                         <div class="reviews">
-                            <?php
-                            $get_tutor_id_sql = "SELECT tutor_id FROM tutor WHERE user_id = '$tutorid'";
-                            $get_tutor_res = mysqli_query($con, $get_tutor_id_sql);
-                            if ($get_tutor_res) {
-                                $get_tutor_id_row = mysqli_fetch_array($get_tutor_res);
-                                $tutor_unique_id = $get_tutor_id_row['tutor_id'];
 
-                                $getReviewSql = "SELECT * FROM ratings WHERE tutor_id = '$tutor_unique_id'";
-                                $reviewRes = mysqli_query($con, $getReviewSql);
-                                if ($reviewRes) {
-                                    while ($getReviewRow = mysqli_fetch_array($reviewRes)) {
-                                        $student_id = $getReviewRow['student_id'];
-                                        $get_student_name_sql = "SELECT users.name from students join users on students.user_id = users.id where students.student_id = $student_id";
-
-                                        $get_student_res = mysqli_query($con, $get_student_name_sql);
-                                        if ($get_student_res) {
-
-                                            $student_row = mysqli_fetch_array($get_student_res);
-
-                                            ?>
-                                            <div class="review">
-                                                <div class="user-star">
-                                                    <h5>
-                                                        <?php echo $student_row['name']; ?>
-                                                    </h5><span class="rating-got">
-                                                        (
-                                                        <?php echo $getReviewRow['rating']; ?> &#9733;)
-                                                    </span>
-                                                </div>
-                                                <div class="posted-review">
-                                                    <?php echo $getReviewRow['review']; ?>
-                                                </div>
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                } else {
-                                    echo "Error: " . mysqli_error($con);
-                                }
-                            } else {
-                                echo "Error: " . mysqli_error($con);
-                            }
-                            ?>
                         </div>
-                        <form class="review-enter" method="POST" id="reviewForm" onsubmit="">
+                        <form class="review-enter" method="POST" id="reviewForm" onsubmit="return postValidate()">
                             <div class="rating" id="ratingStars">
                                 <i class="fa-solid fa-star" data-value="1"></i>
                                 <i class="fa-solid fa-star" data-value="2"></i>
@@ -211,7 +194,6 @@ if ($tutor_result) {
                             <div class="review-post">
                                 <input type="text" name="review" id="review" />
                                 <button name="post" type="submit">Post</button>
-
                             </div>
                             <br>
                             <span id="post-msg">
@@ -232,6 +214,7 @@ if ($tutor_result) {
     <script src="../profileBtn.js"></script>
     <script src="tutorProfile.js"></script>
     <script src="https://kit.fontawesome.com/1a3756e774.js" crossorigin="anonymous"></script>
+    <script src="../../../ajax/ajax.js"></script>
 </body>
 
 </html>

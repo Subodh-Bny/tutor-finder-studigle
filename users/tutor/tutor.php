@@ -31,8 +31,16 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
       </div>
       <div class="menu-cat flex">
         <ul>
-          <li id="dashboard">Home</li>
+          <a href="">
+            <li id="dashboard">Home</li>
+          </a>
 
+          <a href="./requests.php">
+            <li id="Requests">Requests</li>
+          </a>
+          <a href="./students.php">
+            <li id="students">Students</li>
+          </a>
         </ul>
         <!-- Logout Form -->
         <form action="../../logout/logout.php" method="post" id="logout-form">
