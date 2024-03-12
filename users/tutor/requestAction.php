@@ -50,4 +50,3 @@ if (isset($_POST['accept_id'])) {
     $accept_sql = "UPDATE request set status = 'accepted' where request_id = $req_id";
     $accept_query = mysqli_query($con, $accept_sql);
 }
-?>

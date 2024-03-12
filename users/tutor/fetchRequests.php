@@ -33,4 +33,3 @@ if (mysqli_num_rows($requests_res) > 0) {
 } else {
     echo "<h1 style='taxt-align:center; color:lightgray;'>No requests</h1>";
 }
-?>

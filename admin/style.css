@@ -3,7 +3,7 @@
 * {
   padding: 0;
   margin: 0;
-
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
@@ -16,6 +16,7 @@
 
 body {
   color: rgb(255, 255, 255);
+  overflow: hidden;
 }
 
 .main {
@@ -96,7 +97,7 @@ body {
 
 .main-contents {
   background-color: var(--nav);
-  height: 75%;
+  height: 67%;
   width: auto;
   border-radius: 10px;
   padding: 30px;
@@ -174,7 +175,9 @@ body {
   color: black;
   z-index: 2;
 }
-
+.dashboard {
+  height: 80% !important;
+}
 .dash-container {
   margin-top: 10px;
   display: flex;
@@ -209,6 +212,10 @@ body {
   gap: 5px;
 }
 
+.charts {
+  height: 70% !important;
+}
+
 .manage-container {
   margin-top: 10px;
   display: grid;
@@ -216,6 +223,9 @@ body {
   grid-template-columns: repeat(4, auto);
   row-gap: 10px;
   justify-content: space-around;
+}
+.manage-users {
+  height: 69%;
 }
 
 .manage-container img {

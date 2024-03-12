@@ -6,12 +6,12 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
     header("Location: ../../registerationAndLogin/login.php");
 }
 
-if (isset($_POST['see-more'])) {
-    $tutorid = $_POST['tutor_id'];
-    $_SESSION['profile_tutor'] = $tutorid;
+include "../../connection/connection.php";
 
-    header("Location: ./tutorProfile/tutorProfile.php");
-}
+$student_user_id = $_SESSION['user_id'];
+$get_accepted_sql = "SELECT r.*, users.name, users.phone, users.email, users.id, tut.bio, tut.subjects_taught FROM request r INNER JOIN users ON r.tutor_id = users.id INNER JOIN tutor tut ON tut.user_id = users.id WHERE r.student_id = $student_user_id AND r.status = 'accepted'";
+$get_accepted_res = mysqli_query($con, $get_accepted_sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +20,12 @@ if (isset($_POST['see-more'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tutor</title>
 
     <!-- External CSS files -->
-    <link rel="stylesheet" href="./normalUser.css" />
+    <link rel="stylesheet" href="../tutor/updateform.css" />
     <link rel="stylesheet" href="../../public/utility.css" />
-    <link rel="stylesheet" href="./findTutor.css">
+    <link rel="stylesheet" href="../tutor/students.css" />
 </head>
 
 <body>
@@ -38,7 +38,7 @@ if (isset($_POST['see-more'])) {
                 </a>
             </div>
             <div class="menu-cat flex">
-                <?php include "../../components/studentAside.php"; ?>
+                <?php include "../../components/studentAside.php" ?>
                 <!-- Logout Form -->
                 <form action="../../logout/logout.php" method="post" id="logout-form">
                     <button name="logout">
@@ -59,15 +59,15 @@ if (isset($_POST['see-more'])) {
                 </h2>
                 <div class="nav-icons">
                     <!-- Profile Icon -->
-                    <div class="profile icons user-profile">
+                    <div class="profile icons">
                         <img src="../../admin/images/profile.svg" />
                     </div>
                     <!-- Profile Container -->
-                    <div class="profile-container user-control hide ">
+                    <div class="profile-container">
                         <div class="profile-contents">
                             <h4>Settings</h4>
                             <ul class="setting-list">
-                                <li><a href="../../update/updateprofile.php">Update Profile</a></li>
+                                <li><a href="./updateForm.php">Update Profile</a></li>
                             </ul>
                         </div>
                     </div>
@@ -76,46 +76,36 @@ if (isset($_POST['see-more'])) {
 
             <!-- Dashboard Content -->
             <div class="main-contents dashboard">
-                <h2>Find Tutor</h2>
+                <h2>Your Tutors</h2>
                 <hr />
-                <div class="find-container">
+                <div class="dash-container">
                     <!-- Dashboard content will go here -->
                     <?php
-                    include "../../connection/connection.php";
-                    $sql = "SELECT users.name, users.id, ROUND(AVG(ratings.rating), 2) AS average FROM users LEFT JOIN tutor ON tutor.user_id = users.id LEFT JOIN ratings ON ratings.tutor_id = tutor.tutor_id WHERE role = 'tutor' GROUP BY users.name, users.id order by average desc ";
-                    $result = mysqli_query($con, $sql);
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                            <div class="tutor">
-                                <img src="../../img/user.svg" alt="profile">
-                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                    <input type="hidden" name="tutor_id" value="<?php echo $row['id']; ?>">
-                                    <span class="name">
-                                        <?php echo $row['name'] ?>
-                                    </span>
-                                    <span class="avg-rating">
-                                        Rating:
-                                        <?php echo $row['average'] > 0 ? $row['average'] : 0; ?>
-                                    </span>
-                                    <button type="submit" name="see-more">See More</button>
-                                </form>
+                    if ($get_accepted_res) {
+                        while ($row = mysqli_fetch_array($get_accepted_res)) {
+                            echo "<div class='student'>
+                            <h3>" . $row['name'] . "</h3>
+                            <div class='buttons'>
+                            <a href='./message/messages.php'><button class='chat-open' data-chat-id='" . $row['tutor_id'] . "' >Say hi👋</button></a>
+                            <button class='remove-student' data-request-id='" . $row['request_id'] . "'>Remove</button>
                             </div>
-
-                            <?php
+                            </div>";
                         }
+
+
+                    } else {
+                        echo mysqli_error($con);
                     }
                     ?>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 
     <!-- External JavaScript file -->
-    <script src="./profileBtn.js"></script>
+    <script src="../tutor/tutor.js"></script>
+    <script src="../../ajax/ajax.js"></script>
+    <script src="./yourTutors.js"></script>
 </body>
 
 </html>

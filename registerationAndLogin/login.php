@@ -1,6 +1,21 @@
 <?php
 session_start();
 $_SESSION['error_message'] = "";
+if (isset($_SESSION['user_id'])) {
+  if ($_SESSION['user_role'] == "student") {
+    header("Location: ../users/student/normalUser.php");
+    exit;
+
+  } else if ($_SESSION['user_role'] == "tutor") {
+    header("Location: ../users/tutor/tutor.php");
+    exit;
+  } else if ($_SESSION['user_role'] == "admin") {
+    header("Location: ../admin/index.php");
+    exit;
+  }
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $loginEmail = $_POST['email'];

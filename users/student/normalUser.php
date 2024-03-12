@@ -30,12 +30,7 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
         </a>
       </div>
       <div class="menu-cat flex">
-        <ul>
-          <li id="dashboard">Home</li>
-          <a href="./findTutor.php">
-            <li id="find-tutor">Find Tutor</li>
-          </a>
-        </ul>
+        <?php include "../../components/studentAside.php" ?>
         <!-- Logout Form -->
         <form action="../../logout/logout.php" method="post" id="logout-form">
           <button name="logout">

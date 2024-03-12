@@ -41,6 +41,9 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
           <a href="./students.php">
             <li id="students">Students</li>
           </a>
+          <a href='./message/messages.php'>
+            <li id='messages'>Messages</li>
+          </a>
         </ul>
         <!-- Logout Form -->
         <form action="../../logout/logout.php" method="post" id="logout-form">

@@ -66,6 +66,11 @@ $request_exec_res = mysqli_query($con, $request_sql);
                     </a>
                     <a href="../findTutor.php">
                         <li id="find-tutor">Find Tutor</li>
+                    </a> <a href='../yourTutors.php'>
+                        <li id='acceptedTutor'>Your Tutors</li>
+                    </a>
+                    <a href='../message/messages.php'>
+                        <li id='messages'>Messages</li>
                     </a>
                 </ul>
                 <!-- Logout Form -->
@@ -117,7 +122,7 @@ $request_exec_res = mysqli_query($con, $request_sql);
                         $rating_res = mysqli_query($con, $get_average_rating_sql);
                         if ($rating_res) {
                             $got_rating = mysqli_fetch_array($rating_res);
-                            echo $got_rating['average'];
+                            echo $got_rating['average'] > 0 ? $got_rating['average'] : 0;
                         }
                         ?> &#9733; &rpar;
                     </span>

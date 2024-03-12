@@ -37,8 +37,6 @@ const review = document.getElementById("review");
 const ratingVal = document.getElementById("ratingValue");
 const reviewContainer = document.querySelector(".reviews");
 
-function postValidate() {}
-
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("reviewForm")

@@ -1,16 +1,15 @@
 <?php
 session_start();
 
+
 // Redirect if user role is not 'student' or if user ID is not set
 if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
-    header("Location: ../../registerationAndLogin/login.php");
+    header("Location: ../../../registerationAndLogin/login.php");
 }
+$user_id = $_SESSION['user_id'];
 
-include "../../connection/connection.php";
+include "../../../connection/connection.php";
 
-$tutor_user_id = $_SESSION['user_id'];
-$get_accepted_sql = "SELECT r.*, users.name, users.phone, users.email, users.id, stu.grade_level, stu.subjects_needed FROM request r INNER JOIN users ON r.student_id = users.id INNER JOIN students stu ON stu.user_id = users.id WHERE r.tutor_id = $tutor_user_id AND r.status = 'accepted'";
-$get_accepted_res = mysqli_query($con, $get_accepted_sql);
 
 ?>
 
@@ -20,12 +19,14 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutor</title>
+    <title>Document</title>
 
     <!-- External CSS files -->
-    <link rel="stylesheet" href="./updateform.css" />
-    <link rel="stylesheet" href="../../public/utility.css" />
-    <link rel="stylesheet" href="./students.css" />
+    <link rel="stylesheet" href="../../student/normalUser.css" />
+    <link rel="stylesheet" href="../../../public/utility.css" />
+    <link rel="stylesheet" href="./messages.css">
+
+
 </head>
 
 <body>
@@ -34,27 +35,27 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
         <div class="menu">
             <div class="logo flex align-center justify-center">
                 <a href="#" class="logo">
-                    <img class="web-name" src="../../img/logo-text copy.png" alt="" />
+                    <img class="web-name" src="../../../img/logo-text copy.png" alt="" />
                 </a>
             </div>
             <div class="menu-cat flex">
                 <ul>
-                    <a href="./tutor.php">
+                    <a href="../tutor.php">
                         <li id="dashboard">Home</li>
                     </a>
 
-                    <a href="./requests.php">
+                    <a href="../requests.php">
                         <li id="Requests">Requests</li>
                     </a>
-                    <a href="./students.php">
+                    <a href="../students.php">
                         <li id="students">Students</li>
                     </a>
-                    <a href='./message/messages.php'>
+                    <a href='./messages.php'>
                         <li id='messages'>Messages</li>
                     </a>
                 </ul>
                 <!-- Logout Form -->
-                <form action="../../logout/logout.php" method="post" id="logout-form">
+                <form action="../../../logout/logout.php" method="post" id="logout-form">
                     <button name="logout">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path
@@ -73,53 +74,59 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
                 </h2>
                 <div class="nav-icons">
                     <!-- Profile Icon -->
-                    <div class="profile icons">
-                        <img src="../../admin/images/profile.svg" />
+                    <div class="profile icons user-profile">
+                        <img src="../../../admin/images/profile.svg" />
                     </div>
-                    <!-- Profile Container -->
-                    <div class="profile-container">
+
+                    <div class="profile-container user-control hide ">
                         <div class="profile-contents">
                             <h4>Settings</h4>
                             <ul class="setting-list">
-                                <li><a href="./updateForm.php">Update Profile</a></li>
+                                <li><a href="../../../update/updateprofile.php">Update Profile</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Dashboard Content -->
+
             <div class="main-contents dashboard">
-                <h2>Students</h2>
-                <hr />
-                <div class="dash-container">
-                    <!-- Dashboard content will go here -->
-                    <?php
-                    if ($get_accepted_res) {
-                        while ($row = mysqli_fetch_array($get_accepted_res)) {
-                            echo "<div class='student'>
-                            <h3>" . $row['name'] . "</h3>
-                            <div class='buttons'>
-                            <a href='./message/messages.php'><button class='chat-open' data-chat-id='" . $row['student_id'] . "' >Say hi👋</button></a>
-                            <button class='remove-student' data-request-id='" . $row['request_id'] . "'>Remove</button>
-                            </div>
-                            </div>";
-                        }
+                <h2>Messages</h2>
+
+                <div class="messages-cont">
+                    <div class="chat-list">
 
 
-                    } else {
-                        echo mysqli_error($con);
-                    }
-                    ?>
+                    </div>
+                    <div class="chat">
+                        <div class="chat-name">
+                            <?php if (isset($_SESSION['chat_id'])) {
+                                $chat_id = $_SESSION['chat_id'];
+                                $get_chat_name = "SELECT name from users where id = $chat_id";
+                                $get_name_res = mysqli_query($con, $get_chat_name);
+                                $name_row = mysqli_fetch_assoc($get_name_res);
+                                $name = trim($name_row['name']);
+                                echo "<h2>$name</h2>";
+                            } ?>
+                        </div>
+                        <div class="messages">
+
+                        </div>
+                        <div class="message-send">
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- External JavaScript file -->
-    <script src="./tutor.js"></script>
-    <script src="../../ajax/ajax.js"></script>
-    <script src="./students.js"></script>
+    <script src="../../student/profileBtn.js"></script>
+    <script src="https://kit.fontawesome.com/1a3756e774.js" crossorigin="anonymous"></script>
+    <script src="../../../ajax/ajax.js"></script>
+    <script src="./message.js"></script>
 </body>
 
 </html>

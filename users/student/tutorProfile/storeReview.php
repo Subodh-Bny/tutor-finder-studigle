@@ -91,7 +91,7 @@ function showRating($con)
                         $student_row['name'] . "
                                 </h5><span class='rating-got'>
                                     (
-                                  round(" . $getReviewRow['rating'] . ") &#9733;)
+                                 " . round($getReviewRow['rating']) . " &#9733;)
                                 </span>
                             </div>
                             <div class='posted-review'>"
