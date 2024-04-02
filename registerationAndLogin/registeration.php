@@ -11,8 +11,8 @@ if (isset($_POST['registerSubmit'])) {
     $check_email_exist_sql = "SELECT email FROM users WHERE email = '$userEmail'";
     $check_email_exist_res = mysqli_query($con, $check_email_exist_sql);
 
-    $check_email_exist_admin_sql = "SELECT email FROM admins WHERE admin_email = '$userEmail'";
-    $check_email_exist_admin_res = mysqli_query($con, $check_email_exist_sql);
+    $check_email_exist_admin_sql = "SELECT admin_email FROM admins WHERE admin_email = '$userEmail'";
+    $check_email_exist_admin_res = mysqli_query($con, $check_email_exist_admin_sql);
 
     if (mysqli_num_rows($check_email_exist_res) > 0) {
         header("Location: ./login.php?registered=false");

@@ -72,6 +72,25 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
         <hr />
         <div class="dash-container">
           <!-- Dashboard content will go here -->
+          <p>👋 Hello, Future Scholar!
+            <br><br>
+            📚 Welcome to Studigle, where learning knows no bounds! Whether you're struggling with a tough
+            subject or aiming for academic excellence, we're here to support you every step of the way.
+            <br><br>
+            🌟 At Studigle, you'll find a diverse community of dedicated tutors ready to help you achieve
+            your academic goals. From algebra to literature, we've got you covered with personalized tutoring sessions
+            designed to boost your confidence and mastery in any subject.
+            <br><br>
+            🔍 Explore our platform to browse tutor profiles, Communicate and find the perfect match based on
+            your learning style and preferences.
+            <br><br>
+            🚀 Get ready to embark on a journey of growth, discovery, and academic success with Studigle.
+            Let's unlock your full potential and make learning an exciting adventure!
+            <br><br>
+            Start your learning journey today!
+            <br><br>
+            Studigle Team
+          </p>
         </div>
       </div>
     </div>

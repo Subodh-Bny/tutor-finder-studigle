@@ -86,6 +86,31 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
         <hr />
         <div class="dash-container">
           <!-- Dashboard content will go here -->
+
+          <p>
+            👋 Welcome,
+            <?php echo $_SESSION['user_name'] ?>!
+            <br><br>
+            🎓 Ready to make a difference in students' lives? You're in the right place! At Studigle,
+            we're
+            dedicated to empowering tutors like you to share your knowledge, inspire learning, and unlock the potential
+            of
+            every student.
+            <br><br>
+
+            💡 Explore your dashboard to manage requests, communicate with students
+            to enhance your teaching experience. Plus, our intuitive interface makes it easy to stay organized and
+            engaged
+            with your students.
+            <br><br>
+            🚀 Get ready to embark on a rewarding tutoring journey with [Your Website Name]. Together, let's ignite
+            curiosity, foster growth, and create brighter futures, one lesson at a time!
+            <br><br>
+            Happy tutoring!
+          </p>
+          <a href="./requests.php">
+            <button class="see-requests">See Requests!</button>
+          </a>
         </div>
       </div>
     </div>

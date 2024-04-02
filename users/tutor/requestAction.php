@@ -31,7 +31,7 @@ if (isset($_POST['reqId'])) {
             echo "<div class='student'>
             <h3>" . $row['name'] . "</h3>
             <div class='buttons'>
-            <button class='' >Chat</button>
+            <a href='./message/messages.php'><button class='chat-open' data-chat-id='" . $row['student_id'] . "' >Say hi👋</button></a>
             <button class='remove-student' data-request-id='" . $row['request_id'] . "'>Remove</button>
             </div>
             </div>";

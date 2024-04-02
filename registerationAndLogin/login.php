@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="title">Log in</div>
                   <form class="flip-card__form" method="POST" onsubmit="return loginValidate()"
                     action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <input class="flip-card__input login-email" name="email" placeholder="Email" type="email" />
+                    <input class="flip-card__input login-email" name="email" placeholder="Email" type="text" />
                     <span class="error-message login-email-error"></span>
                     <input class="flip-card__input login-pass" name="password" placeholder="Password" type="password" />
                     <span class="error-message login-pass-error">

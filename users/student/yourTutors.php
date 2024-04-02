@@ -9,7 +9,7 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
 include "../../connection/connection.php";
 
 $student_user_id = $_SESSION['user_id'];
-$get_accepted_sql = "SELECT r.*, users.name, users.phone, users.email, users.id, tut.bio, tut.subjects_taught FROM request r INNER JOIN users ON r.tutor_id = users.id INNER JOIN tutor tut ON tut.user_id = users.id WHERE r.student_id = $student_user_id AND r.status = 'accepted'";
+$get_accepted_sql = "SELECT r.*, users.name, users.phone, users.email, users.id, tut.bio FROM request r INNER JOIN users ON r.tutor_id = users.id INNER JOIN tutor tut ON tut.user_id = users.id WHERE r.student_id = $student_user_id AND r.status = 'accepted'";
 $get_accepted_res = mysqli_query($con, $get_accepted_sql);
 
 ?>
@@ -87,7 +87,7 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
                             <h3>" . $row['name'] . "</h3>
                             <div class='buttons'>
                             <a href='./message/messages.php'><button class='chat-open' data-chat-id='" . $row['tutor_id'] . "' >Say hi👋</button></a>
-                            <button class='remove-student' data-request-id='" . $row['request_id'] . "'>Remove</button>
+                            <button class='remove-tutor' data-request-id='" . $row['request_id'] . "'>Remove</button>
                             </div>
                             </div>";
                         }

@@ -12,7 +12,7 @@ include "../../../connection/connection.php";
 
 $tutorid = $_SESSION['profile_tutor'];
 
-$tutorSql = "SELECT users.phone, users.email, users.name, tutor.bio, tutor.subjects_taught, tutor.availability, tutor.hourly_rate, tutor.tutor_id
+$tutorSql = "SELECT users.phone, users.email, users.name, tutor.bio,  tutor.availability, tutor.hourly_rate, tutor.tutor_id
      from users join tutor
      on users.id = tutor.user_id
      where users.id = $tutorid and tutor.user_id = $tutorid";
@@ -154,7 +154,15 @@ $request_exec_res = mysqli_query($con, $request_sql);
                     <h2>Subjects Taught</h2>
                     <br>
                     <p>
-                        <?php echo $tutor_row['subjects_taught']; ?>
+                        <?php
+                        $subject_taught_sql = "SELECT subject from subjects where tutor_id = $tutor_id_for_rating";
+                        $select_subject_query = mysqli_query($con, $subject_taught_sql);
+                        if (mysqli_num_rows($select_subject_query) > 0) {
+                            while ($subjects = mysqli_fetch_assoc($select_subject_query)) {
+                                echo $subjects['subject'] . "<br/>";
+                            }
+                        }
+                        ?>
                     </p>
                     <br>
                     <hr>

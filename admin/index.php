@@ -63,14 +63,7 @@ if ($reportRes) {
           <?php echo $_SESSION['user_name']; ?>
         </h2>
         <div class="nav-icons">
-          <div class="noti icons">
-            <img src="./images/noti.svg " alt="" />
-            <span>3</span>
-          </div>
-          <div class="mail icons">
-            <img src="./images/mail.svg" alt="" />
-            <span>2</span>
-          </div>
+
           <div class="profile icons">
             <img src="./images/profile.svg" />
           </div>

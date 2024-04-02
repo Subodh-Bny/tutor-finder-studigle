@@ -95,7 +95,7 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
                 <div class="dash-container">
                     <!-- Dashboard content will go here -->
                     <?php
-                    if ($get_accepted_res) {
+                    if (mysqli_num_rows($get_accepted_res) > 0) {
                         while ($row = mysqli_fetch_array($get_accepted_res)) {
                             echo "<div class='student'>
                             <h3>" . $row['name'] . "</h3>
@@ -108,7 +108,7 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
 
 
                     } else {
-                        echo mysqli_error($con);
+                        echo "<h1 class='no-sts'>No Students! Check requests</h1>";
                     }
                     ?>
                 </div>

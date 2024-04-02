@@ -5,7 +5,7 @@ session_start();
 if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
     header("Location: ../../registerationAndLogin/login.php");
 }
-
+include '../../connection/connection.php';
 if (isset($_POST['see-more'])) {
     $tutorid = $_POST['tutor_id'];
     $_SESSION['profile_tutor'] = $tutorid;
@@ -76,12 +76,33 @@ if (isset($_POST['see-more'])) {
 
             <!-- Dashboard Content -->
             <div class="main-contents dashboard">
-                <h2>Find Tutor</h2>
+                <div class="header-container">
+                    <h2>Find Tutor</h2>
+                    <div class="input">
+                        <h4>Select subject</h4>
+                        <select name="subject" id="subject">
+                            <option value="-1">Select...</option>
+                            <?php
+                            $get_subjects = "SELECT DISTINCT subject FROM subjects";
+                            $subject_result = mysqli_query($con, $get_subjects);
+                            if ($subject_result) {
+                                while ($subjects = mysqli_fetch_assoc($subject_result)) {
+                                    echo "<option value='" . $subjects['subject'] . "'>" . $subjects['subject'] . "</option>";
+                                }
+                            }
+                            ?>
+
+
+                        </select>
+                        <button id="subject-submit">SEARCH</button>
+                    </div>
+                </div>
+
                 <hr />
                 <div class="find-container">
-                    <!-- Dashboard content will go here -->
+
                     <?php
-                    include "../../connection/connection.php";
+
                     $sql = "SELECT users.name, users.id, ROUND(AVG(ratings.rating), 2) AS average FROM users LEFT JOIN tutor ON tutor.user_id = users.id LEFT JOIN ratings ON ratings.tutor_id = tutor.tutor_id WHERE role = 'tutor' GROUP BY users.name, users.id order by average desc ";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
@@ -116,6 +137,8 @@ if (isset($_POST['see-more'])) {
 
     <!-- External JavaScript file -->
     <script src="./profileBtn.js"></script>
+    <script src="../../ajax/ajax.js"></script>
+    <script src="./findTutor.js"></script>
 </body>
 
 </html>

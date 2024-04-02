@@ -41,3 +41,31 @@ a:visited {
 .tutor form button {
   padding: 5px 10px;
 }
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#subject {
+  width: 100px;
+  border: 2px solid #644bb1;
+  color: #644bb1;
+  border-radius: 5px;
+  padding: 0 5px;
+  background-color: transparent;
+  font-weight: bolder;
+}
+#subject-submit {
+  padding: 0 5px;
+  height: 25px;
+  background-color: #644bb1;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}

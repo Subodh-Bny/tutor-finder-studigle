@@ -10,10 +10,11 @@ include "../../connection/connection.php";
 $userid = $_SESSION['user_id'];
 $_SESSION['message'] = "";
 
-$sql = "SELECT * from users join tutor on tutor.user_id = users.id where id = $userid";
+$sql = "SELECT *, t.tutor_id from users u join tutor t on t.user_id = u.id where id = $userid";
 $result = mysqli_query($con, $sql);
 if ($result) {
     $row = mysqli_fetch_array($result);
+    $tutorId = $row['tutor_id'];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,14 +22,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $bio = $_POST['bio'];
-    $subjects = $_POST['subjects'];
+
     $availability = $_POST['availability'];
     $rate = $_POST['rate'];
-    $updatesql = "UPDATE users join tutor on users.id = tutor.user_id 
-                    set users.name = '$name', users.phone = $phone, users.email = '$email', 
-                    tutor.bio = '$bio', tutor.subjects_taught = '$subjects', tutor.availability = '$availability', tutor.hourly_rate = $rate
-                    where users.id = $userid and tutor.user_id = $userid";
+    $updatesql = "UPDATE users
+    JOIN tutor ON users.id = tutor.user_id
+    SET
+        users.name = '$name',
+        users.phone = '$phone',
+        users.email = '$email',
+        tutor.bio = '$bio',
+        tutor.availability = '$availability',
+        tutor.hourly_rate = '$rate'
+    WHERE
+        users.id = '$userid' AND tutor.user_id = '$userid';
+    ";
     $update_res = mysqli_query($con, $updatesql);
+    if ($_POST['subjects'] != -1) {
+        $subject = $_POST['subjects'];
+        $add_subject_sql = "INSERT into subjects(tutor_id, subject) values('$tutorId', '$subject')";
+        $result_subject_create = mysqli_query($con, $add_subject_sql);
+        if ($result_subject_create) {
+
+        } else {
+            $_SESSION['message'] = mysqli_error($con);
+        }
+    } else if ($_POST['subject_create'] != "") {
+        $subject = $_POST['subject_create'];
+        $add_subject_sql = "INSERT into subjects(tutor_id, subject) values('$tutorId', '$subject')";
+        $result_subject_create = mysqli_query($con, $add_subject_sql);
+        if ($result_subject_create) {
+
+        } else {
+            $_SESSION['message'] = mysqli_error($con);
+        }
+    }
     if ($update_res) {
         $_SESSION['message'] = "Updated Successfully";
         $affected_rows = $con->affected_rows;
@@ -47,6 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $_SESSION['message'] = mysqli_error($con);
     }
+
+
+
 }
 
 ?>
@@ -75,7 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="menu-cat flex">
                 <ul>
-                    <li id="dashboard"><a href="./tutor.php">Home</a></li>
+                    <a href="./tutor.php">
+                        <li id="dashboard">Home</li>
+                    </a>
 
                 </ul>
                 <!-- Logout Form -->
@@ -132,8 +165,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <br>
                         <label for="subjects">Subjects Taught</label>
                         <br>
-                        <textarea name="subjects" id="subjects" cols="30"
-                            rows="3"><?php echo $row['subjects_taught']; ?></textarea>
+                        <label for="select-subjects" style="font-size:1
+                        50px;">Select from existing Subjects</label><br>
+                        <select name="subjects" id="select-subjects">
+                            <option value="-1">Select</option>
+                            <?php /* echo $row['subjects_taught']; */
+                            $subject_sql = "SELECT distinct subject from subjects ";
+                            $subject_res = mysqli_query($con, $subject_sql);
+                            if ($subject_res) {
+                                while ($subjects = mysqli_fetch_assoc($subject_res)) {
+                                    echo "<option value='" . $subjects['subject'] . "'>" . $subjects['subject'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                        <br>
+                        <label for="create-subject" style="font-size:1
+                        50px;">Or Create one</label><br>
+
+                        <input type="text" id="create-subject" name="subject_create">
+
                         <br>
                         <label for="availability">Availability</label>
                         <br>

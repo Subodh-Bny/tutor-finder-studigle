@@ -18,7 +18,7 @@ function validateRegister() {
   const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
 
   if (!namePattern.test(regName)) {
-    nameError.textContent = "*Enter Full Name";
+    nameError.textContent = "*Enter correct Name";
     return false;
   } else {
     nameError.textContent = "";

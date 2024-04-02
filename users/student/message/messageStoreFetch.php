@@ -3,7 +3,7 @@ session_start();
 
 
 // Redirect if user role is not 'student' or if user ID is not set
-if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
+if ($_SESSION['user_role'] != 'student' || !isset ($_SESSION['user_id'])) {
     header("Location: ../../../registerationAndLogin/login.php");
 }
 
@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 
 include "../../../connection/connection.php";
 
-if (isset($_POST['loaded'])) {
+if (isset ($_POST['loaded'])) {
     $fetch_sql = "SELECT u.id, u.name
     FROM users u
     WHERE u.id IN (
@@ -43,7 +43,7 @@ if (isset($_POST['loaded'])) {
 
 }
 
-if (isset($_POST['chatId'])) {
+if (isset ($_POST['chatId'])) {
     $chat_id = $_POST['chatId'];
 
     $get_chat_name = "SELECT name from users where id = $chat_id";
@@ -86,7 +86,7 @@ if (isset($_POST['chatId'])) {
 
 }
 
-if (isset($_POST['messagesId'])) {
+if (isset ($_POST['messagesId'])) {
     $chat_person_id = $_POST['messagesId'];
     $chat_message = $_POST['message'];
     $message_store_sql = "INSERT into messages(sender_id, receiver_id, message) values('$user_id',' $chat_person_id','$chat_message')";

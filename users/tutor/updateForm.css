@@ -19,6 +19,7 @@
 
 body {
   color: rgb(255, 255, 255);
+  overflow: hidden;
 }
 
 .main {
@@ -26,6 +27,7 @@ body {
   gap: 10px;
   background-color: var(--body);
   padding: 10px;
+  overflow: hidden;
 }
 
 .menu {
@@ -93,7 +95,7 @@ body {
 }
 
 .contents-container {
-  height: auto;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -102,7 +104,7 @@ body {
 
 .main-contents {
   background-color: var(--nav);
-  height: 75%;
+  height: 100%;
   width: auto;
   border-radius: 10px;
   padding: 30px;
@@ -185,8 +187,7 @@ body {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-between;
+  flex-direction: column;
   color: black;
 }
 
@@ -300,4 +301,40 @@ svg path {
 .menu-cat ul a:visited {
   text-decoration: none;
   color: white;
+}
+label {
+  font-weight: 400;
+  margin-top: 10px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form button {
+  background-color: transparent;
+  border: 2px solid #644bb1;
+  color: #644bb1;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bolder;
+}
+form button:hover {
+  background-color: #644bb1;
+  color: white;
+}
+.see-requests {
+  width: 150px;
+  margin-top: 10px;
+  color: #644bb1;
+  font-weight: bolder;
+  background: transparent;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 2px solid #644bb1;
+}
+
+.see-requests:hover {
+  color: white;
+  background-color: #644bb1;
 }

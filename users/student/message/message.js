@@ -25,11 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Clear existing messages
             messages.innerHTML = "";
-
             // Update chat name
+
             name.innerHTML = "<h2>" + responseText[0].name + "</h2>";
 
             // Render messages
+
             responseText.forEach((msgResponse) => {
               const messageHTML = msgResponse.html;
               messages.innerHTML += messageHTML;
@@ -45,22 +46,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Fetch message when chat tutor is clicked
-      const chatTutor = document.querySelectorAll(".chat-tutor");
+      const chats = document.querySelectorAll(".chat-tutor");
       const inputSend = document.querySelector(".message-send");
-      chatTutor.forEach((chat) => {
-        chat.addEventListener("click", () => {
-          fetchMessages(chat);
-          inputSend.innerHTML = `<input type="text" id="send-message">
-          <button id="send-btn">Send</button>`;
 
+      let activeChat = null;
+      let fetchInterval = null;
+
+      chats.forEach((chat) => {
+        chat.addEventListener("click", () => {
+          activeChat = chat;
+          fetchMessages(activeChat);
+          inputSend.innerHTML = `<input type="text" id="send-message">
+                                      <button id="send-btn">Send</button>`;
           setTimeout(() => {
             messages.scrollTop = messages.scrollHeight;
           }, 500);
-          // Remove previous event listener to prevent multiple listeners
+
           const sendBtn = document.getElementById("send-btn");
           sendBtn.removeEventListener("click", sendMessage);
-          // Add event listener for sending message
-          sendBtn.addEventListener("click", () => sendMessage(chat));
+          sendBtn.addEventListener("click", () => sendMessage(activeChat));
+
+          // Fetch messages periodically for the active chat
+          clearInterval(fetchInterval); // Clear any existing interval
+          fetchInterval = setInterval(() => {
+            fetchMessages(activeChat);
+          }, 2000);
         });
       });
 
@@ -68,21 +78,23 @@ document.addEventListener("DOMContentLoaded", () => {
       function sendMessage(chat) {
         const sendBtn = document.getElementById("send-btn");
         const sendMsg = document.getElementById("send-message");
-        $.ajax({
-          type: "POST",
-          url: "./messageStoreFetch.php",
-          data: {
-            message: sendMsg.value,
-            messagesId: chat.dataset.tutorChatId,
-          },
-          success: function (messageResponse) {
-            sendMsg.value = "";
-            fetchMessages(chat);
-            setTimeout(() => {
-              messages.scrollTop = messages.scrollHeight;
-            }, 1000);
-          },
-        });
+        if (sendMsg.value != "") {
+          $.ajax({
+            type: "POST",
+            url: "./messageStoreFetch.php",
+            data: {
+              message: sendMsg.value,
+              messagesId: chat.dataset.tutorChatId,
+            },
+            success: function (messageResponse) {
+              sendMsg.value = "";
+              fetchMessages(chat);
+              setTimeout(() => {
+                messages.scrollTop = messages.scrollHeight;
+              }, 500);
+            },
+          });
+        }
       }
     },
   });

@@ -82,7 +82,7 @@ include "../../../connection/connection.php";
                         <div class="profile-contents">
                             <h4>Settings</h4>
                             <ul class="setting-list">
-                                <li><a href="../../../update/updateprofile.php">Update Profile</a></li>
+                                <li><a href="../updateForm.php">Update Profile</a></li>
                             </ul>
                         </div>
                     </div>
