@@ -67,7 +67,7 @@ if (isset($_POST['delete'])) {
         $delete_sql = "DELETE FROM users WHERE id = '$user_id'";
         $result = mysqli_query($con, $delete_sql);
         if ($result) {
-            echo "User deleted successfully";
+            header("Location: ../index.php");
         } else {
             echo mysqli_error($con) . "</br>";
         }
@@ -131,7 +131,7 @@ if (isset($_POST['delete'])) {
         $delete_sql = "DELETE FROM users WHERE id = '$user_id'";
         $result = mysqli_query($con, $delete_sql);
         if ($result) {
-            echo "User deleted successfully";
+            header("Location: ../index.php");
         } else {
             echo mysqli_error($con);
         }

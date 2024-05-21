@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../../connection/connection.php";
+
 $select_user_sql = "SELECT * from users where id = " . $_SESSION['update_user_id'];
 $result = mysqli_query($con, $select_user_sql);
 
