@@ -12,7 +12,7 @@ include "../../../connection/connection.php";
 
 $tutorid = $_SESSION['profile_tutor'];
 
-$tutorSql = "SELECT users.phone, users.email, users.name, tutor.bio,  tutor.availability, tutor.hourly_rate, tutor.tutor_id
+$tutorSql = "SELECT users.phone, users.email, users.name, tutor.image, tutor.bio,  tutor.availability, tutor.image, tutor.hourly_rate, tutor.tutor_id
      from users join tutor
      on users.id = tutor.user_id
      where users.id = $tutorid and tutor.user_id = $tutorid";
@@ -111,6 +111,14 @@ $request_exec_res = mysqli_query($con, $request_sql);
 
             <div class="main-contents dashboard">
                 <div class="tutor-actions">
+                    <?php
+                    if (!empty($tutor_row['image'])) {
+                        echo '<img class="tutor-profile" src="../../tutor/' . $tutor_row['image'] . '" alt="profile">';
+                    } else {
+                        echo '<img class="tutor-default" src="../../../img/user.svg" alt="profile">';
+                    }
+                    ?>
+
                     <h1>
                         <?php echo $tutor_row['name']; ?>
                     </h1>

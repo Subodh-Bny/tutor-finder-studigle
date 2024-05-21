@@ -18,6 +18,33 @@ if ($result) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+    if ($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
@@ -33,10 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         users.email = '$email',
         tutor.bio = '$bio',
         tutor.availability = '$availability',
-        tutor.hourly_rate = '$rate'
+        tutor.hourly_rate = '$rate',
+        tutor.image = '$target_file'
     WHERE
-        users.id = '$userid' AND tutor.user_id = '$userid';
-    ";
+        users.id = $userid AND tutor.user_id = $userid;"
+    ;
     $update_res = mysqli_query($con, $updatesql);
     if ($_POST['subjects'] != -1) {
         $subject = $_POST['subjects'];
@@ -85,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -108,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <ul>
                     <a href="./tutor.php">
                         <li id="dashboard">Home</li>
+
                     </a>
 
                 </ul>
@@ -152,7 +182,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <hr />
                 <div class="dash-container">
                     <!-- Dashboard content will go here -->
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST"
+                        enctype="multipart/form-data">
+                        Select image to upload:
+                        <input type="file" name="image" id="image">
                         <label for="name">Name</label><br>
                         <input id="name" name="name" type="text" value="<?php echo $row['name']; ?>">
                         <br>

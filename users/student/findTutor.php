@@ -103,31 +103,39 @@ if (isset($_POST['see-more'])) {
                 <div class="find-container">
 
                     <?php
-
-                    $sql = "SELECT users.name, users.id, ROUND(AVG(ratings.rating), 2) AS average FROM users LEFT JOIN tutor ON tutor.user_id = users.id LEFT JOIN ratings ON ratings.tutor_id = tutor.tutor_id WHERE role = 'tutor' GROUP BY users.name, users.id order by average desc ";
+                    $sql = "SELECT users.name, users.id, tutor.image, ROUND(AVG(ratings.rating), 2) AS average FROM users LEFT JOIN tutor ON tutor.user_id = users.id LEFT JOIN ratings ON ratings.tutor_id = tutor.tutor_id WHERE role = 'tutor' GROUP BY users.name, users.id ORDER BY average DESC";
                     $result = mysqli_query($con, $sql);
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <div class="tutor">
-                                <img src="../../img/user.svg" alt="profile">
+                                <?php
+                                // Display image if available
+                                if (!empty($row['image'])) {
+
+                                    echo '<img class="tutor-profile" src="../tutor/' . $row['image'] . '" alt="profile">';
+
+                                } else {
+                                    // Display a default image if no image is available
+                                    echo '<img class="tutor-default" src="../../img/user.svg" alt="profile">';
+                                }
+                                ?>
                                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                                     <input type="hidden" name="tutor_id" value="<?php echo $row['id']; ?>">
                                     <span class="name">
                                         <?php echo $row['name'] ?>
                                     </span>
                                     <span class="avg-rating">
-                                        Rating:
-                                        <?php echo $row['average'] > 0 ? $row['average'] : 0; ?>
+                                        Rating: <?php echo $row['average'] > 0 ? $row['average'] : 0; ?>
                                     </span>
                                     <button type="submit" name="see-more">See More</button>
                                 </form>
                             </div>
-
                             <?php
                         }
                     }
                     ?>
+
                 </div>
             </div>
 

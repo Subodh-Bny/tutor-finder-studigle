@@ -180,3 +180,12 @@ hr {
   border: 1px solid #6e6097 !important;
   color: #6e6097 !important;
 }
+
+.tutor-default {
+  height: 40px;
+}
+.tutor-profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
