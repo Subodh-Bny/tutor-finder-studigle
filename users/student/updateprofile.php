@@ -10,18 +10,23 @@ if (isset($_SESSION['user_id'])) {
     }
 
     if ($_SERVER['REQUEST_METHOD'] == "POST" || isset($_POST['update-btn'])) {
-        $grade = $_POST['grade'];
+
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
         $user_id = $_SESSION['user_id'];
         $userName = $_SESSION['user_name'];
 
-        include "../connection/connection.php";
-        $sql = "UPDATE students SET grade_level = ? WHERE user_id = ?";
+
+        include "../../connection/connection.php";
+        $sql = "UPDATE users SET name = ?, phone = ?, email = ?, password = ?  WHERE id = ?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param("si", $grade, $user_id);
+        $stmt->bind_param("sissi", $name, $phone, $email, $password, $user_id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            $_SESSION['update_msg'] = "Grade level updated successfully";
+            $_SESSION['update_msg'] = "Profile updated successfully";
 
             $getUpdatedSql = "SELECT * from users where id = $user_id";
 
@@ -55,8 +60,8 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../users/student/normalUser.css" />
-    <link rel="stylesheet" href="../public/utility.css" />
+    <link rel="stylesheet" href="./normalUser.css" />
+    <link rel="stylesheet" href="../../public/utility.css" />
 </head>
 
 <body>
@@ -64,16 +69,16 @@ if (isset($_SESSION['user_id'])) {
         <div class="menu">
             <div class="logo flex align-center justify-center">
                 <a href="#" class="logo">
-                    <img class="web-name" src="../img/logo-text copy.png" alt="" />
+                    <img class="web-name" src="../../img/logo-text copy.png" alt="" />
                 </a>
             </div>
             <div class="menu-cat flex">
                 <ul>
-                    <a href="../users/student/normalUser.php">
+                    <a href="./normalUser.php">
                         <li id="dashboard">Home</li>
                     </a>
                 </ul>
-                <form action=" ../logout/logout.php" method="post" id="logout-form">
+                <form action=" ../../logout/logout.php" method="post" id="logout-form">
 
                     <button name="logout">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -91,7 +96,7 @@ if (isset($_SESSION['user_id'])) {
                 </h2>
                 <div class="nav-icons">
                     <div class="profile icons">
-                        <img src="../admin/images/profile.svg" />
+                        <img src="../../admin/images/profile.svg" />
                     </div>
                     <div class="profile-container">
                         <div class="profile-contents">
@@ -107,24 +112,33 @@ if (isset($_SESSION['user_id'])) {
                 <h2>Update Profile</h2>
                 <hr />
                 <div class="dash-container">
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="update-form"
-                        method="POST">
-                        <label for="grade">Grade</label><br>
-                        <input type="text" name="grade" id="grade"><br>
-                        <span>
+                    <form class="update-container" method="POST"
+                        action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name"><br>
+                        <label for="phone">Phone</label><br>
+                        <input type="text" name="phone" id="phone"><br>
+                        <label for="email">Email</label><br>
+                        <input type="text" name="email" id="email"><br>
+                        <label for="password">Password</label><br>
+                        <input type="text" name="password" id="password"><br>
+                        <button name="update-btn"
+                            style="padding:5px;background-color:transparent; border:1px solid #644bb1; border-radius:5px; margin-top:5px;">Update</button><br>
+                        <span style="color:green;">
                             <?php echo $_SESSION['update_msg'];
                             unset($_SESSION['update-msg']);
                             ?>
                         </span>
                         <br>
-                        <button type="submit" name="update-btn">Update</button>
+
                     </form>
 
                 </div>
             </div>
         </div>
     </div>
-    <script src="../users/student/student.js"></script>
+    <script src="./student.js"></script>
+
 </body>
 
 </html>

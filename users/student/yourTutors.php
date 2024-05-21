@@ -67,7 +67,7 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
                         <div class="profile-contents">
                             <h4>Settings</h4>
                             <ul class="setting-list">
-                                <li><a href="./updateForm.php">Update Profile</a></li>
+                                <li><a href="./updateprofile.php">Update Profile</a></li>
                             </ul>
                         </div>
                     </div>

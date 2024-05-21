@@ -93,7 +93,7 @@ if ($result) {
                             <?php
                         }
                     } else if ($row['role'] == "tutor") {
-                        $get_tutor_sql = "SELECT * from tutor where user_id = " . $row['id'];
+                        $get_tutor_sql = "SELECT * from tutor join subjects on subjects.tutor_id = tutor.tutor_id where user_id = " . $row['id'];
                         $tutor_result = mysqli_query($con, $get_tutor_sql);
                         if ($tutor_result) {
                             $tutor_row = mysqli_fetch_array($tutor_result);
@@ -105,7 +105,7 @@ if ($result) {
                                 <label for="subjects">Subjects Taught</label>
                                 <br>
                                 <textarea name="subjects" id="subjects" cols="30"
-                                    rows="3"><?php echo $tutor_row['subjects_taught']; ?></textarea>
+                                    rows="3"><?php echo $tutor_row['subject']; ?></textarea>
                                 <br>
                                 <label for="availability">Availability</label>
                                 <br>

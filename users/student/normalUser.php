@@ -59,7 +59,7 @@ if ($_SESSION['user_role'] != 'student' || !isset($_SESSION['user_id'])) {
             <div class="profile-contents">
               <h4>Settings</h4>
               <ul class="setting-list">
-                <li><a href="../../update/updateprofile.php">Update Profile</a></li>
+                <li><a href="./updateprofile.php">Update Profile</a></li>
               </ul>
             </div>
           </div>

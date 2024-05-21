@@ -26,6 +26,7 @@ if (isset($_POST['see-more'])) {
     <link rel="stylesheet" href="./normalUser.css" />
     <link rel="stylesheet" href="../../public/utility.css" />
     <link rel="stylesheet" href="./findTutor.css">
+
 </head>
 
 <body>
@@ -67,7 +68,7 @@ if (isset($_POST['see-more'])) {
                         <div class="profile-contents">
                             <h4>Settings</h4>
                             <ul class="setting-list">
-                                <li><a href="../../update/updateprofile.php">Update Profile</a></li>
+                                <li><a href="./updateprofile.php">Update Profile</a></li>
                             </ul>
                         </div>
                     </div>

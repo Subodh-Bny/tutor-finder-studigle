@@ -37,8 +37,8 @@ if (isset($_POST['update'])) {
 
         include "../../connection/connection.php";
 
-        $sql = "UPDATE users as t1 join tutor as tut on t1.id = tut.user_id 
-                set t1.name = '$name', t1.phone = '$phone', t1.email = '$email', tut.bio = '$bio', tut.subjects_taught = '$subjects', tut.availability = '$availability', tut.hourly_rate = '$rate'
+        $sql = "UPDATE users as t1 join tutor as tut on t1.id = tut.user_id join subjects as sub on tut.tutor_id= sub.tutor_id
+                set t1.name = '$name', t1.phone = '$phone', t1.email = '$email', tut.bio = '$bio', sub.subject = '$subjects', tut.availability = '$availability', tut.hourly_rate = '$rate'
                 where t1.id = '$update_user_id'";
 
         $result = mysqli_query($con, $sql);
