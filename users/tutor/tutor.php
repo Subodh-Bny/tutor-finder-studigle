@@ -16,7 +16,7 @@ if ($_SESSION['user_role'] != 'tutor' || !isset($_SESSION['user_id'])) {
   <title>Tutor</title>
 
   <!-- External CSS files -->
-  <link rel="stylesheet" href="./updateform.css" />
+  <link rel="stylesheet" href="./updateForm.css" />
   <link rel="stylesheet" href="../../public/utility.css" />
 </head>
 

@@ -105,6 +105,7 @@ if (isset($_POST['see-more'])) {
                     <?php
                     $sql = "SELECT users.name, users.id, tutor.image, ROUND(AVG(ratings.rating), 2) AS average FROM users LEFT JOIN tutor ON tutor.user_id = users.id LEFT JOIN ratings ON ratings.tutor_id = tutor.tutor_id WHERE role = 'tutor' GROUP BY users.name, users.id ORDER BY average DESC";
                     $result = mysqli_query($con, $sql);
+                    
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>

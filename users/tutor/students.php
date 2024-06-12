@@ -23,8 +23,8 @@ $get_accepted_res = mysqli_query($con, $get_accepted_sql);
     <title>Tutor</title>
 
     <!-- External CSS files -->
-    <link rel="stylesheet" href="./updateform.css" />
-    <link rel="stylesheet" href="../../public/utility.css" />
+    <link rel="stylesheet" href="./updateForm.css" />
+    <link rel="stylesheet" href="../../public/utility.css"/>
     <link rel="stylesheet" href="./students.css" />
 </head>
 

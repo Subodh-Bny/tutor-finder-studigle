@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
 
+    var_dump($uploadOk);
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
@@ -116,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Update</title>
 
     <!-- External CSS files -->
-    <link rel="stylesheet" href="./updateform.css" />
+    <link rel="stylesheet" href="./updateForm.css" />
     <link rel="stylesheet" href="../../public/utility.css" />
 </head>
 
